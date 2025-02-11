@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Products online Shopping</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="products.js"></script>
+</head>
+
+<body>
+    <h1>Products</h1>
+
+    <div ng-app="onlineShopping" ng-controller="ProductController">
+        <table>
+            <tr>
+                <td>id</td>
+                <td></td>
+                <td></td>
+                <td>Product Name</td>
+                <td></td>
+                <td>Price</td>
+            </tr>
+
+            <tr ng-repeat="product in products">
+                <td>{{product.id}}</td>
+                <td></td>
+                <td>
+                    <img src={{product.img}} height="100px" alt="">
+                </td>
+                <td>{{product.productName}}</td>
+                <td></td>
+                <td>{{product.price | currency:"₹"}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

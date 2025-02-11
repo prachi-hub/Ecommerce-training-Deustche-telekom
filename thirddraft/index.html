@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Online shoping</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="./index.js"></script>
+</head>
+
+<body ng-app="onlineShopping" ng-controller="LoginController">
+    <!-- Template -->
+    <h1>TFL Store</h1>
+    <ol>
+        <li>Gerbera</li>
+        <li>Rose</li>
+        <li>Lotus</li>
+    </ol>
+    <hr />
+    <div>
+        <ol>
+            <li ng-repeat="user in users">{{user.email}} {{user.password}}</li>
+        </ol>
+    </div>
+    <div>
+        <form ng-submit="onValidate()">
+            <table>
+                <tr>
+                    <td>
+                        <label for="email">Email</label>
+                    </td>
+                    <td>
+                        <input type="email" name="email" id="email" ng-model="user.email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password</label>
+                    </td>
+                    <td>
+                        <input type="password" name="password" id="password" ng-model="user.password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" id="btnLogin">Login</button>
+                    </td>
+                </tr>
+            </table>
+            <label id="message"></label>
+        </form>
+    </div>
+</body>
+
+</html>
