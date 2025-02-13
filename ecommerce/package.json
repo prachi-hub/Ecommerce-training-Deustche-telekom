@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "This is ecommerce website using angularjs with typescript ",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Prachi Mankar",
+  "license": "ISC",
+  "dependencies": {
+    "@types/angular": "^1.8.9",
+    "angular": "^1.8.3",
+    "typescript": "^5.7.3"
+  }
+}

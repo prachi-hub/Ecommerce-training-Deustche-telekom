@@ -1,0 +1,16 @@
+{
+  "name": "angularjs-with-typescript",
+  "version": "1.0.0",
+  "description": "Practice sample applocation",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/angular": "^1.8.9",
+    "angular": "^1.8.3",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,1 @@
+var shopingCardApp = angular.module("shopingCardModule", []);
