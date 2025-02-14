@@ -5,26 +5,33 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Header */
 .navbar {
-    width: 100%;
+    width: 100vw;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Consistent shadow */
-    padding: 15px 30px;
-    /* Same padding as login */
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #f0f0f0;
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 60px;
 }
 
 .navbar-brand {
     color: #333;
-    font-size: 1.8em;
+    font-size: 1.5em;
     text-decoration: none;
     font-weight: bold;
 }
@@ -44,7 +51,7 @@ body {
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 5px 10px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -55,27 +62,25 @@ body {
 
 /* Footer */
 .footer {
-    width: 100%;
+    width: 100vw;
     background: white;
     color: #555;
     text-align: center;
-    padding: 15px;
+    padding: 10px 0;
     border-top: 2px solid #f0f0f0;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
-    /* Consistent shadow */
     box-sizing: border-box;
-    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 50px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
+/* Main Content */
+ng-view {
+    flex: 1;
+    padding: 80px 20px 70px;
+    /* Top and bottom padding to avoid overlapping */
+    box-sizing: border-box;
+    overflow-y: auto;
 }
