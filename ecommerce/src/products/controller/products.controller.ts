@@ -6,7 +6,7 @@ interface IProductScope extends angular.IScope {
 }
 
 class ProductController {
-    static $inject = ['$scope'];
+    static $inject = ['$scope', '$location', 'shoppingcartService'];
 
     productName: string = '';
     price: string | any;
@@ -17,11 +17,10 @@ class ProductController {
     ];;
     productIdCounter: number = 1;
 
-    constructor(private $scope: IProductScope) {
+    constructor(private $scope: IProductScope, private $location: angular.ILocationService, private shoppingcartService: any) {
         $scope['vm'] = this;
     }
 
-    // Register Product
     registerProduct(): void {
         const maxId = this.products.reduce((max, item) => Math.max(max, item.id || 0), 0);
 
@@ -33,8 +32,10 @@ class ProductController {
         });
     }
 
-    addProductToShoppingCart(productId: number): void {
-        alert(`Product with ID ${productId} added to the shopping cart!`);
+    addProductToShoppingCart(product: any): void {
+        console.log("add product", product)
+        this.shoppingcartService.addToCart(product);
+        this.$location.path('/shoppingcart');
     }
 }
 

@@ -1,1 +1,1 @@
-"use strict";
+var shoppingcartModule = angular.module('shoppingcartModule', []);

@@ -1,6 +1,8 @@
 var ProductController = /** @class */ (function () {
-    function ProductController($scope) {
+    function ProductController($scope, $location, shoppingcartService) {
         this.$scope = $scope;
+        this.$location = $location;
+        this.shoppingcartService = shoppingcartService;
         this.productName = '';
         this.products = [
             { id: 1, img: "https://m.media-amazon.com/images/I/61GavzFRKVL._AC_UL480_FMwebp_QL65_.jpg", productName: 'Mobile', price: '25000' },
@@ -11,7 +13,6 @@ var ProductController = /** @class */ (function () {
         $scope['vm'] = this;
     }
     ;
-    // Register Product
     ProductController.prototype.registerProduct = function () {
         var maxId = this.products.reduce(function (max, item) { return Math.max(max, item.id || 0); }, 0);
         this.products.push({
@@ -21,11 +22,12 @@ var ProductController = /** @class */ (function () {
             img: ''
         });
     };
-    // Add Product to Shopping Cart
-    ProductController.prototype.addProductToShoppingCart = function (productId) {
-        alert("Product with ID ".concat(productId, " added to the shopping cart!"));
+    ProductController.prototype.addProductToShoppingCart = function (product) {
+        console.log("add product", product);
+        this.shoppingcartService.addToCart(product);
+        this.$location.path('/shoppingcart');
     };
-    ProductController.$inject = ['$scope'];
+    ProductController.$inject = ['$scope', '$location', 'shoppingcartService'];
     return ProductController;
 }());
 angular.module('productsModule').controller('ProductController', ProductController);

@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <a href="#/auth" class="navbar-brand">E-Commerce</a>
+    <ul class="nav-links">
+        <li ng-if="!headerCtrl.isAuthenticated">
+            <button ng-click="headerCtrl.login()">Login</button>
+        </li>
+        <li ng-if="headerCtrl.isAuthenticated">
+            <button ng-click="headerCtrl.logout()">Logout</button>
+        </li>
+        <li>
+            <button ng-click="headerCtrl.goToCart()">
+                Add to Cart ({{ headerCtrl.cartCount }})
+            </button>
+        </li>
+    </ul>
+</nav>
