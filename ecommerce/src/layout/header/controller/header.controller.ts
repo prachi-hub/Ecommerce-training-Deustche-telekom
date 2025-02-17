@@ -1,38 +1,29 @@
 import * as angular from 'angular';
 
-import { shoppingcartModule } from '../../../shopping/shopping.module';
-
 class HeaderController {
-    static $inject = ['shoppingcartService', '$location'];
+    static $inject = ['$scope', 'shoppingcartService', '$location', 'sharedCartCountService'];
 
     cartCount: number = 0;
     isAuthenticated: boolean = false;
 
-    constructor(private CartService: any, private $location: angular.ILocationService) {
-        this.updateCartCount();
-    }
+    constructor(private $scope: angular.IScope, private shoppingcartService: any, private $location: angular.ILocationService,
+        private sharedCartCountService: any
+    ) {
+        this.cartCount = this.sharedCartCountService.getCartCount();
 
-    updateCartCount(): void {
-        this.cartCount = this.CartService.getCartItems().length;
-    }
+        this.$scope.$watch(() => this.sharedCartCountService.getCartCount(), (count: number) => {
+            this.cartCount = count;
+        });
 
-    goToCart(): void {
-        this.$location.path('/cart');
     }
 
     login(): void {
         this.isAuthenticated = true;
-        alert('Logged in successfully!');
     }
 
     logout(): void {
         this.isAuthenticated = false;
-        alert('Logged out successfully!');
     }
 }
 
-shoppingcartModule.component('appHeader', {
-    templateUrl: 'views/header.html',
-    controller: HeaderController,
-    controllerAs: 'headerCtrl'
-});
+angular.module('headerModule').controller('HeaderController', HeaderController);

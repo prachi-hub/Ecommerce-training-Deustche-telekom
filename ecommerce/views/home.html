@@ -1,0 +1,19 @@
+<div class="home-container" ng-controller="HomeController as homeCtrl">
+    <section class="hero-section">
+        <h1>Discover Your Beauty</h1>
+        <p>Explore the latest trends in cosmetics and beauty products.</p>
+        <a href="#!/products" class="btn-shop-now">Shop Now</a>
+    </section>
+
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card" ng-repeat="product in homeCtrl.featuredProducts">
+                <img ng-src="{{product.img}}" alt="{{product.name}}">
+                <h3>{{product.productName}}</h3>
+                <p>{{product.price | currency:"₹"}}</p>
+                <button type="button" ng-click="homeCtrl.addProductToShoppingCart(product)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+</div>

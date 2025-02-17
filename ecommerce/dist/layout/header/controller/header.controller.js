@@ -1,30 +1,24 @@
 var HeaderController = /** @class */ (function () {
-    function HeaderController(CartService, $location) {
-        this.CartService = CartService;
+    function HeaderController($scope, shoppingcartService, $location, sharedCartCountService) {
+        var _this = this;
+        this.$scope = $scope;
+        this.shoppingcartService = shoppingcartService;
         this.$location = $location;
+        this.sharedCartCountService = sharedCartCountService;
         this.cartCount = 0;
         this.isAuthenticated = false;
-        this.updateCartCount();
+        this.cartCount = this.sharedCartCountService.getCartCount();
+        this.$scope.$watch(function () { return _this.sharedCartCountService.getCartCount(); }, function (count) {
+            _this.cartCount = count;
+        });
     }
-    HeaderController.prototype.updateCartCount = function () {
-        this.cartCount = this.CartService.getCartItems().length;
-    };
-    HeaderController.prototype.goToCart = function () {
-        this.$location.path('/cart');
-    };
     HeaderController.prototype.login = function () {
         this.isAuthenticated = true;
-        alert('Logged in successfully!');
     };
     HeaderController.prototype.logout = function () {
         this.isAuthenticated = false;
-        alert('Logged out successfully!');
     };
-    HeaderController.$inject = ['shoppingcartService', '$location'];
+    HeaderController.$inject = ['$scope', 'shoppingcartService', '$location', 'sharedCartCountService'];
     return HeaderController;
 }());
-shoppingcartModule.component('appHeader', {
-    templateUrl: 'views/header.html',
-    controller: HeaderController,
-    controllerAs: 'headerCtrl'
-});
+angular.module('headerModule').controller('HeaderController', HeaderController);

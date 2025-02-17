@@ -3,10 +3,28 @@ var ShoppingcartController = /** @class */ (function () {
         this.$scope = $scope;
         this.shoppingcartService = shoppingcartService;
         this.cartItems = [];
+        this.totalPrice = 0;
         $scope['vm'] = this;
         this.cartItems = this.shoppingcartService.getCartItems();
+        this.updateCart();
     }
-    ShoppingcartController.$inject = ['$scope', 'shoppingcartService'];
+    ShoppingcartController.prototype.updateCart = function () {
+        this.cartItems = this.shoppingcartService.getCartItems();
+        this.totalPrice = this.cartItems.reduce(function (sum, item) { return sum + item.price; }, 0);
+    };
+    ShoppingcartController.prototype.removeItem = function (productId) {
+        this.shoppingcartService.removeFromCart(productId);
+        this.updateCart();
+    };
+    ShoppingcartController.prototype.increaseQuantity = function (productId) {
+        this.shoppingcartService.increaseQuantity(productId);
+        this.updateCart();
+    };
+    ShoppingcartController.prototype.decreaseQuantity = function (productId) {
+        this.shoppingcartService.decreaseQuantity(productId);
+        this.updateCart();
+    };
+    ShoppingcartController.$inject = ['$scope', 'shoppingcartService', 'sharedCartCountService'];
     return ShoppingcartController;
 }());
-shoppingcartModule.controller('ShoppingcartController', ShoppingcartController);
+shoppingModule.controller('ShoppingcartController', ShoppingcartController);

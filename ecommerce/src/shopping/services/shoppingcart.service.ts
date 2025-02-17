@@ -1,23 +1,48 @@
 import * as angular from 'angular';
-import { shoppingcartModule } from '../shopping.module';
-
-interface IProduct {
-    id: number;
-    productName: string;
-    price: number;
-    img: string;
-}
+import { shoppingModule } from '../shopping.module';
 
 class ShoppingcartService {
-    private cartItems: IProduct[] = [];
+    static $inject = ['sharedCartCountService'];
+    private cartItems: any = [];
 
-    addToCart(product: IProduct): void {
-        this.cartItems.push(product);
+    constructor(private sharedCartCountService: any) { }
+
+    addToCart(product: any): void {
+        const existingProduct = this.cartItems.find((item: any) => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += 1;  // If product exists, increase quantity
+        } else {
+            product.quantity = 1;  // If product doesn't exist, add it with quantity 1
+            this.cartItems.push(product);
+        }
     }
 
-    getCartItems(): IProduct[] {
+    getCartItems(): any[] {
         return this.cartItems;
+    }
+
+    getCartCount(): number {
+        return this.cartItems.length;
+    }
+
+    removeFromCart(productId: number): void {
+        this.cartItems = this.cartItems.filter((item: any) => item.id !== productId);
+        this.sharedCartCountService.setCartCount(this.cartItems.length);
+    }
+
+    increaseQuantity(productId: number): void {
+        const product = this.cartItems.find((item: any) => item.id === productId);
+        if (product) {
+            product.price += product.price;
+        }
+    }
+
+    decreaseQuantity(productId: number): void {
+        const product = this.cartItems.find((item: any) => item.id === productId);
+        if (product && product.price > product.price) {
+            product.price -= product.price;
+        }
     }
 }
 
-shoppingcartModule.service('shoppingcartService', ShoppingcartService);
+shoppingModule.service('shoppingcartService', ShoppingcartService);

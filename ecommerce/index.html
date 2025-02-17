@@ -12,11 +12,19 @@
     <script src="./dist/auth/auth.module.js"></script>
     <script src="./dist/auth/controllers/auth.controller.js"></script>
 
-    <script src="./dist/layout/header/controller/header.controller.js"></script>
-    <script src="./dist/layout/footer/controller/footer.controller.js"></script>
+    <script src="./dist/signup/signup.module.js"></script>
+    <script src="./dist/signup/controllers/signup.controller.js"></script>
 
-    <script src="./dist/products/products.module.js"></script>
-    <script src="./dist/products/controller/products.controller.js"></script>
+    <script src="./dist/home/home.module.js"></script>
+    <script src="./dist/home/controllers/home.controller.js"></script>
+    <script src="./dist/home/services/featureproducts.service.js"></script>
+    <script src="./dist/home/services/sharedCartCount.js"></script>
+
+    <script src="./dist/layout/header/header.module.js"></script>
+    <script src="./dist/layout/header/controller/header.controller.js"></script>
+
+    <script src="./dist/layout/footer/footer.module.js"></script>
+    <script src="./dist/layout/footer/controller/footer.controller.js"></script>
 
     <script src="./dist/shopping/shopping.module.js"></script>
     <script src="./dist/shopping/controller/shoppingcart.controller.js"></script>
@@ -28,14 +36,16 @@
     <link rel="stylesheet" href="./styles/auth.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/products.css">
+    <link rel="stylesheet" href="./styles/home.css">
+    <link rel="stylesheet" href="./styles/shopingcard.css">
 </head>
 
 <body ng-app="onlineShopping">
-    <div ng-include="'views/header.html'"></div>
+    <div ng-if="!isLoginPage" ng-controller="HeaderController as headerCtrl" ng-include="'views/header.html'"></div>
 
     <div ng-view></div>
 
-    <div ng-include="'views/footer.html'"></div>
+    <div ng-if="!isLoginPage" ng-include="'views/footer.html'"></div>
 </body>
 
 </html>

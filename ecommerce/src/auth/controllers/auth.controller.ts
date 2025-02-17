@@ -5,23 +5,27 @@ interface IAuthScope extends angular.IScope {
 }
 
 class AuthController {
-    static $inject = ['$scope', '$location'];
+    static $inject = ['$scope', '$location', '$http'];
 
     user = {
         email: '',
         password: ''
     };
 
-    constructor(private $scope: IAuthScope, private $location: angular.ILocationService) {
+    constructor(private $scope: IAuthScope, private $location: angular.ILocationService, private $http: angular.IHttpService) {
         $scope['vm'] = this;
     }
 
     onValidate(): void {
-        if (this.user.email === 'prachi.mankar@gmail.com' && this.user.password === '123456') {
-            this.$location.path('/products');
-        } else {
-            alert('Please fill in all fields.');
-        }
+        this.$http.post('http://localhost:3000/login', this.user)
+            .then((response) => {
+                if (response.status === 200) {
+                    this.$location.path('/home');
+                }
+            })
+            .catch((error) => {
+                alert('Invalid credentials');
+            });
     }
 }
 

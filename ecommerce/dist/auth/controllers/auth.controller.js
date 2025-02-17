@@ -1,7 +1,8 @@
 var AuthController = /** @class */ (function () {
-    function AuthController($scope, $location) {
+    function AuthController($scope, $location, $http) {
         this.$scope = $scope;
         this.$location = $location;
+        this.$http = $http;
         this.user = {
             email: '',
             password: ''
@@ -9,14 +10,18 @@ var AuthController = /** @class */ (function () {
         $scope['vm'] = this;
     }
     AuthController.prototype.onValidate = function () {
-        if (this.user.email === 'prachi.mankar@gmail.com' && this.user.password === '123456') {
-            this.$location.path('/products');
-        }
-        else {
-            alert('Please fill in all fields.');
-        }
+        var _this = this;
+        this.$http.post('http://localhost:3000/login', this.user)
+            .then(function (response) {
+                if (response.status === 200) {
+                    _this.$location.path('/home');
+                }
+            })
+            .catch(function (error) {
+                alert('Invalid credentials');
+            });
     };
-    AuthController.$inject = ['$scope', '$location'];
+    AuthController.$inject = ['$scope', '$location', '$http'];
     return AuthController;
 }());
 angular.module('authModule').controller('AuthController', AuthController);

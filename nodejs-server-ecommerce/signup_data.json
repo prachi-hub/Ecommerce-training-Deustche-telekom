@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Prachi Mankar",
+    "email": "prachi.mankar@gmail.com",
+    "contact": "8888905848",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "name": "Prachi",
+    "email": "prachi@gmail.com",
+    "contact": "8888905849",
+    "password": "123453",
+    "confirmPassword": "123453"
+  }
+]
