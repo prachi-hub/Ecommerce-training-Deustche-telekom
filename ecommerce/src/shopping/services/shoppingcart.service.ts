@@ -33,6 +33,7 @@ class ShoppingcartService {
     increaseQuantity(productId: number): void {
         const product = this.cartItems.find((item: any) => item.id === productId);
         if (product) {
+            product.quantity += 1;
             product.price += product.price;
         }
     }
@@ -40,6 +41,7 @@ class ShoppingcartService {
     decreaseQuantity(productId: number): void {
         const product = this.cartItems.find((item: any) => item.id === productId);
         if (product && product.price > product.price) {
+            product.quantity = -1;
             product.price -= product.price;
         }
     }

@@ -26,12 +26,14 @@ var ShoppingcartService = /** @class */ (function () {
     ShoppingcartService.prototype.increaseQuantity = function (productId) {
         var product = this.cartItems.find(function (item) { return item.id === productId; });
         if (product) {
+            product.quantity += 1;
             product.price += product.price;
         }
     };
     ShoppingcartService.prototype.decreaseQuantity = function (productId) {
         var product = this.cartItems.find(function (item) { return item.id === productId; });
         if (product && product.price > product.price) {
+            product.quantity = -1;
             product.price -= product.price;
         }
     };
