@@ -15,7 +15,7 @@ interface ICartScope extends angular.IScope {
 class ShoppingcartController {
     static $inject = ['$scope', 'shoppingcartService', 'sharedCartCountService'];
 
-    cartItems: IProduct[] = [];
+    cartItems: any = [];
     totalPrice: number = 0;
 
     constructor(private $scope: ICartScope, private shoppingcartService: any) {
@@ -25,24 +25,32 @@ class ShoppingcartController {
         this.updateCart();
     }
 
-    private updateCart(): void {
-        this.cartItems = this.shoppingcartService.getCartItems();
-        this.totalPrice = this.cartItems.reduce((sum, item) => sum + item.price, 0);
-    }
-
     removeItem(productId: number): void {
         this.shoppingcartService.removeFromCart(productId);
         this.updateCart();
     }
 
     increaseQuantity(productId: number): void {
-        this.shoppingcartService.increaseQuantity(productId);
+        const product = this.cartItems.find((item: any) => item.id === productId);
+        if (product) {
+            product.quantity += 1;
+            product.price = product.unitPrice * product.quantity;
+        }
         this.updateCart();
     }
 
     decreaseQuantity(productId: number): void {
-        this.shoppingcartService.decreaseQuantity(productId);
+        const product = this.cartItems.find((item: any) => item.id === productId);
+        if (product && product.quantity > 1) {
+            product.quantity -= 1;
+            product.price = product.unitPrice * product.quantity;
+        }
         this.updateCart();
+    }
+
+    private updateCart(): void {
+        this.cartItems = this.shoppingcartService.getCartItems();
+        this.totalPrice = this.cartItems.reduce((sum: any, item: any) => sum + item.price, 0);
     }
 }
 

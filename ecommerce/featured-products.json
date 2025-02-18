@@ -2,48 +2,56 @@
     {
         "id": 1,
         "productName": "Glide Peptide SPF50 PA+++ Lip Treatment",
+        "unitPrice": 499,
         "price": 499,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Glide-Peptide-SPF50-PA-Lip-Treatment-2.jpg?v=1738665819&width=500"
     },
     {
         "id": 2,
         "productName": "Cloud Nine Niacinamide Glow Blush",
+        "unitPrice": 899,
         "price": 899,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Cloud-Nine-Niacinamide-Glow-Blush-2_050fcbd6.jpg?v=1739703043&width=500"
     },
     {
         "id": 3,
         "productName": "Glide Peptide Serum Lipstick",
+        "unitPrice": 1000,
         "price": 1000,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Glide-Peptide-Serum-Lipstick-2.png?v=1736332892&width=500"
     },
     {
         "id": 4,
         "productName": "SUGAR Drop A Tint Lip Oil",
+        "unitPrice": 1499,
         "price": 1499,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/SUGAR-Drop-A-Tint-Lip-Oil-2.jpg?v=1736421554&width=500"
     },
     {
         "id": 5,
         "productName": "Partner In Shine Transferproof Lip Gloss",
+        "unitPrice": 1599,
         "price": 1599,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Partner-In-Shine-Transferproof-Lip-Gloss-2_292657c1.jpg?v=1739789098&width=500"
     },
     {
         "id": 6,
         "productName": "Matte Match Transferproof Foundation",
+        "unitPrice": 1269,
         "price": 1269,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Matte-Match-Transferproof-Foundation-2.jpg?v=1736851832&width=500"
     },
     {
         "id": 7,
         "productName": "Tip Tac Toe Nail Lacquer Matte",
+        "unitPrice": 249,
         "price": 249,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/Tip-Tac-Toe-Nail-Lacquer-Matte-2_6c3db499.jpg?v=1739789007&width=500"
     },
     {
         "id": 8,
         "productName": "SUGAR Play Mega Hype Colour Changing Lip Oil",
+        "unitPrice": 599,
         "price": 599,
         "img": "https://www.sugarcosmetics.com/cdn/shop/files/SUGAR-Play-Mega-Hype-Colour-Changing-Lip-Oil-2.jpg?v=1736851832&width=300"
     }

@@ -10,9 +10,9 @@ class ShoppingcartService {
     addToCart(product: any): void {
         const existingProduct = this.cartItems.find((item: any) => item.id === product.id);
         if (existingProduct) {
-            existingProduct.quantity += 1;  // If product exists, increase quantity
+            existingProduct.quantity += 1;
         } else {
-            product.quantity = 1;  // If product doesn't exist, add it with quantity 1
+            product.quantity = 1;
             this.cartItems.push(product);
         }
     }
@@ -28,22 +28,6 @@ class ShoppingcartService {
     removeFromCart(productId: number): void {
         this.cartItems = this.cartItems.filter((item: any) => item.id !== productId);
         this.sharedCartCountService.setCartCount(this.cartItems.length);
-    }
-
-    increaseQuantity(productId: number): void {
-        const product = this.cartItems.find((item: any) => item.id === productId);
-        if (product) {
-            product.quantity += 1;
-            product.price += product.price;
-        }
-    }
-
-    decreaseQuantity(productId: number): void {
-        const product = this.cartItems.find((item: any) => item.id === productId);
-        if (product && product.price > product.price) {
-            product.quantity = -1;
-            product.price -= product.price;
-        }
     }
 }
 
